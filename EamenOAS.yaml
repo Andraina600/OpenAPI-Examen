@@ -44,7 +44,20 @@ paths:
                 items:
                   $ref: '#/components/schemas/Car'
   /cars/{id}:
-
+    get:
+      parameters:
+          name: id
+          in: path
+          type: integer
+      responses:
+        200:
+          description: Specifique car
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Car'
 
 components:
   schemas:
