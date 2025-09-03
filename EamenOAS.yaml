@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: STD24096
+  description: This is a specification of STD24096
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8000'
+paths:
+  /ping:
+    get:
+      responses:
+        200:
+          description: Reponse pong
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: pong
+  /cars:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Car'
+      responses:
+        201:
+          description: Car created
+          content:
+            application/json:
+              schema:
+                type: object
+                example: Car added
+    get:
+      responses:
+        200:
+          description: List of cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+  /cars/{id}:
+
+
+components:
+  schemas:
+    Characteristics:
+      type: object
+      properties:
+        -max_speed:
+          type: integer
+          example: 200
+        -min_speed:
+          type: integer
+          example: 10
+
+    Car:
+      type: object
+      properties:
+        -indentifier:
+          type: string
+          example: www192847
+        -brand:
+          type: string
+          example: Kia
+        -model:
+          type: string
+          example: electric
+        -characteristics:
+          items:
+            $ref: '#/components/schemas/Characteristics'
+
+  
